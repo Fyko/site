@@ -1,11 +1,11 @@
 import React from 'react';
-import {useLanyard} from 'use-lanyard';
-import {SiSpotify} from 'react-icons/si';
+import { useLanyard } from 'use-lanyard';
+import { SiSpotify } from 'react-icons/si';
 
-export const DISCORD_ID = '268798547439255572';
+export const DISCORD_ID = '492374435274162177';
 
 export function Song() {
-	const {data: user} = useLanyard(DISCORD_ID);
+	const { data: user } = useLanyard(DISCORD_ID);
 
 	const c =
 		'text-right select-none sm:select-text w-full inline-flex text-lg rounded-sm focus:outline-none focus:opacity-100 focus:ring items-center space-x-2 no-underline opacity-50 hover:opacity-100 h-12 mt-0.5';
@@ -22,12 +22,7 @@ export function Song() {
 	}
 
 	return (
-		<a
-			target="_blank"
-			rel="noreferrer"
-			className={c}
-			href={`https://open.spotify.com/track/${user.spotify.track_id}`}
-		>
+		<a target="_blank" rel="noreferrer" className={c} href={`https://open.spotify.com/track/${user.spotify.track_id}`}>
 			<span className="truncate">
 				Listening to {user.spotify.song} by {user.spotify.artist}
 			</span>

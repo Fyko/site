@@ -1,4 +1,4 @@
-const bday = new Date('2 November 2004');
+const bday = new Date('10 May 2004');
 const ageMilliseconds = Date.now() - bday.getTime();
 
 export const MILLISECOND = 1;

@@ -1,0 +1,41 @@
+{
+	"extends": ["marine/prettier/node", "marine/prettier/react", "plugin:tailwindcss/recommended"],
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"parserOptions": {
+		"ecmaFeatures": { "jsx": true },
+		"ecmaVersion": 12,
+		"sourceType": "module",
+		"project": "./tsconfig.json"
+	},
+	"ignorePatterns": ["**/*.js"],
+	"rules": {
+		// Next.js
+		"@typescript-eslint/triple-slash-reference": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [".tsx"]
+			}
+		],
+
+		// Prettier handles these
+		"@typescript-eslint/comma-dangle": "off",
+		"react/function-component-definition": "off",
+		"react/jsx-tag-spacing": "off",
+		"react/no-unescaped-entities": "off",
+		"no-mixed-operators": "off",
+		"operator-linebreak": "off",
+		"@typescript-eslint/naming-convention": "off",
+		"quote-props": "off",
+		"@typescript-eslint/quotes": "off",
+		"react/jsx-curly-newline": "off",
+
+		// Doesn"t work with 3.0.0 jit
+		"tailwindcss/no-custom-classname": "off"
+	}
+}

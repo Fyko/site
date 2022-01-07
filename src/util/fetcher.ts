@@ -1,4 +1,4 @@
-import {NextkitException} from 'nextkit';
+import { NextkitException } from 'nextkit';
 
 export async function fetcher<T>(url: string, init?: RequestInit): Promise<T> {
 	const request = await fetch(url, init);
@@ -9,7 +9,7 @@ export async function fetcher<T>(url: string, init?: RequestInit): Promise<T> {
 
 		if (json && typeof json === 'object' && 'message' in json) {
 			// Safe to assert because of the ??= underneath this
-			message = (json as {message?: string}).message!;
+			message = (json as { message?: string }).message!;
 		}
 
 		message ??= 'Something went wrong';

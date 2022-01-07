@@ -1,39 +1,28 @@
-import React, {useReducer} from 'react';
-import {AnimatePresence, motion} from 'framer-motion';
-import {GetStaticProps} from 'next';
+import { AnimatePresence, motion } from 'framer-motion';
+import { GetStaticProps } from 'next';
+import React, { useReducer } from 'react';
+import { FaKeybase } from 'react-icons/fa';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
 import {
 	SiAmazonaws,
-	SiBabel,
 	SiDocker,
 	SiGit,
 	SiGithub,
 	SiGo,
-	SiJava,
-	SiNextdotjs as SiNextDotJs,
+	SiLinkedin,
 	SiNodedotjs as SiNodeDotJs,
 	SiPostgresql,
-	SiReact,
 	SiRedis,
-	SiStyledcomponents as SiStyledComponents,
-	SiTailwindcss,
+	SiRust,
 	SiTwitter,
 	SiTypescript,
-	SiWebpack,
-	SiWebstorm,
 	SiYarn,
 } from 'react-icons/si';
-import {HiOutlineLocationMarker} from 'react-icons/hi';
-import {
-	useLanyard,
-	Data as LanyardData,
-	LanyardError,
-	LanyardResponse,
-} from 'use-lanyard';
-import {PinnedRepo, useGitHubPinnedRepos} from '../hooks/github';
-import {mockPinnedRepos} from '../offline/mock';
-import {ListItem} from '../components/list-item';
-import {DISCORD_ID} from '../components/song';
-import {age} from '../util/time';
+import { Data as LanyardData, LanyardError, LanyardResponse, useLanyard } from 'use-lanyard';
+import { ListItem } from '../components/list-item';
+import { DISCORD_ID } from '../components/song';
+import { PinnedRepo, useGitHubPinnedRepos } from '../hooks/github';
+import { age } from '../util/time';
 
 interface Props {
 	pinnedRepos: PinnedRepo[];
@@ -41,9 +30,9 @@ interface Props {
 }
 
 export default function Index(props: Props) {
-	const {data: projects = props.pinnedRepos} = useGitHubPinnedRepos('alii');
+	const { data: projects = props.pinnedRepos } = useGitHubPinnedRepos('fyko');
 
-	const {data: lanyard} = useLanyard(DISCORD_ID, {
+	const { data: lanyard } = useLanyard(DISCORD_ID, {
 		fallbackData: props.lanyard,
 	});
 
@@ -51,24 +40,29 @@ export default function Index(props: Props) {
 		<>
 			<div className="space-y-4">
 				<div className="flex items-center space-x-3">
-					<a
-						href="https://github.com/alii"
-						target="_blank"
-						rel="noreferrer"
-						aria-label="GitHub Profile"
-					>
+					<a href="https://github.com/fyko" target="_blank" rel="noreferrer" aria-label="GitHub Profile">
 						<SiGithub className="w-7 h-7" />
 						<span className="sr-only">GitHub Profile</span>
 					</a>
 
-					<a
-						href="https://twitter.com/alistaiiiir"
-						target="_blank"
-						rel="noreferrer"
-						aria-label="Twitter Profile"
-					>
+					<a href="https://twitter.com/fyko" target="_blank" rel="noreferrer" aria-label="Twitter Profile">
 						<SiTwitter className="w-7 h-7" />
 						<span className="sr-only">Twitter Profile</span>
+					</a>
+
+					<a href="https://keybase.io/carterh/" target="_blank" rel="noreferrer" aria-label="Keybase Profile">
+						<FaKeybase className="w-7 h-7" />
+						<span className="sr-only">Keybase Profile</span>
+					</a>
+
+					<a
+						href="https://www.linkedin.com/in/carterhimmel/"
+						target="_blank"
+						rel="noreferrer"
+						aria-label="LinkedIn Profile"
+					>
+						<SiLinkedin className="w-7 h-7" />
+						<span className="sr-only">LinkedIn Profile</span>
 					</a>
 
 					{lanyard && (
@@ -95,33 +89,20 @@ export default function Index(props: Props) {
 					)}
 				</div>
 
-				<h1 className="text-3xl sm:text-4xl md:text-6xl font-bold">
-					Hey, I'm Alistair ✌️
-				</h1>
+				<h1 className="text-3xl sm:text-4xl md:text-6xl font-bold">Howdy, I'm Carter 🤠</h1>
 
-				<p className="opacity-80">
-					I'm a ~{age.toPrecision(6)} year old software engineer from the United
-					Kingdom. I'm interested in large scale frontend applications and
-					performant serverside code.
-				</p>
+				<p className="opacity-80">I'm a ~{age.toPrecision(6)} year old software engineer based in Denver, Colorado.</p>
 			</div>
 
 			<div className="space-y-4">
 				<h1 className="text-2xl sm:text-3xl font-bold">What do I do? 💭</h1>
 				<p className="opacity-80">
-					Honestly, a few too many things to count on one hand... I'm currently
-					having a fantastic time working with Giggl - we're building a way to
-					watch & browse the web, together. Below are some of the more popular
-					open source projects I've worked on. In total, the following repos
-					have earnt me{' '}
-					{projects.reduce(
-						(acc, project) => acc + parseInt(project.stars, 10),
-						0,
-					)}{' '}
-					stars! Thank you! 💖
+					I'm currently enjoying myself over at PUSHAS - we're building a platform to easier facilitate sneaker
+					consignment. Below are some of my popular open source projects. In total, the following repos have earnt me{' '}
+					{projects.reduce((acc, project) => acc + parseInt(project.stars, 10), 0)} stars! Thank you! 💖
 				</p>
 				<div className="grid grid-cols-1 sm:grid-cols-2 auto-cols-max gap-1 sm:gap-3">
-					{projects?.map(project => (
+					{projects.map((project) => (
 						<ProjectCard key={project.repo} repo={project} />
 					))}
 				</div>
@@ -130,42 +111,33 @@ export default function Index(props: Props) {
 			<div className="space-y-4">
 				<h1 className="text-2xl sm:text-3xl font-bold">Technologies 💻</h1>
 				<p className="opacity-80">
-					I use a wide range of tools to tackle each hurdle in the most
-					efficient manner possible. I really love working with Docker and
-					containersation and it's proven to be a reliable bit of kit for
-					working in and scaling services in both production and development
-					environments.
+					I use a wide range of tools to tackle each hurdle in the most efficient manner possible. I really love working
+					with Docker and containersation and it's proven to be a reliable bit of kit for working in and scaling
+					services in both production and development environments.
 				</p>
 				<ul className="grid grid-cols-3 sm:grid-cols-4 gap-4">
 					<ListItem icon={SiDocker} text="Docker" />
 					<ListItem icon={SiRedis} text="Redis" />
 					<ListItem icon={SiPostgresql} text="Postgres" />
-					<ListItem icon={SiReact} text="React.js" />
 					<ListItem icon={SiNodeDotJs} text="Node.js" />
 					<ListItem icon={SiTypescript} text="TypeScript" />
 					<ListItem icon={SiGo} text="Golang" />
-					<ListItem icon={SiJava} text="Java" />
+					<ListItem icon={SiRust} text="Rust" />
 					<ListItem icon={SiAmazonaws} text="AWS" />
-					<ListItem icon={SiWebstorm} text="WebStorm" />
-					<ListItem icon={SiNextDotJs} text="Next.js" />
-					<ListItem icon={SiWebpack} text="Webpack" />
-					<ListItem icon={SiBabel} text="Babel" />
 					<ListItem icon={SiYarn} text="Yarn" />
-					<ListItem icon={SiTailwindcss} text="TailwindCSS" />
 					<ListItem icon={SiGit} text="Git" />
-					<ListItem icon={SiStyledComponents} text="styled-components" />
 				</ul>
 			</div>
 		</>
 	);
 }
 
-function ProjectCard({repo: project}: {repo: PinnedRepo}) {
-	const [isOpen, toggle] = useReducer(x => !x, false);
+function ProjectCard({ repo: project }: { repo: PinnedRepo }) {
+	const [isOpen, toggle] = useReducer((x) => !x, false);
 
 	return (
 		<motion.div
-			animate={{height: isOpen ? 'auto' : '54px'}}
+			animate={{ height: isOpen ? 'auto' : '54px' }}
 			className="flex overflow-hidden relative flex-col no-underline bg-white bg-opacity-5 hover:bg-opacity-10 rounded-md md:rounded-lg border border-white border-opacity-10"
 		>
 			<button
@@ -202,14 +174,9 @@ function ProjectCard({repo: project}: {repo: PinnedRepo}) {
 				<div>
 					<motion.div
 						className="p-1 bg-white bg-opacity-0 hover:bg-opacity-10 rounded-full"
-						animate={{rotate: isOpen ? 90 : 0}}
+						animate={{ rotate: isOpen ? 90 : 0 }}
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="w-5 h-5"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-						>
+						<svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
 							<path
 								fillRule="evenodd"
 								d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -222,12 +189,7 @@ function ProjectCard({repo: project}: {repo: PinnedRepo}) {
 
 			<AnimatePresence>
 				{isOpen && (
-					<motion.div
-						initial={{opacity: 0}}
-						animate={{opacity: 1}}
-						exit={{opacity: 0}}
-						className="flex h-full"
-					>
+					<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex h-full">
 						<div className="flex flex-col py-4 px-5 space-y-4">
 							<p className="flex-1">{project.description}</p>
 
@@ -264,22 +226,11 @@ function ProjectCard({repo: project}: {repo: PinnedRepo}) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async function () {
-	const pinnedRepos = await fetch(
-		'https://gh-pinned-repos.egoist.sh/?username=alii',
-	)
-		.then(async response => response.json() as Promise<PinnedRepo[]>)
-		.catch(error => {
-			if (process.env.NODE_ENV === 'development') {
-				return mockPinnedRepos;
-			}
-
-			// Something has probably gone wrong... (likely a network error)
-			throw error;
-		});
-
-	const lanyard = await fetch(
-		`https://api.lanyard.rest/v1/users/${DISCORD_ID}`,
+	const pinnedRepos = await fetch('https://gh-pinned-repos.egoist.sh/?username=fyko').then(
+		async (response) => response.json() as Promise<PinnedRepo[]>,
 	);
+
+	const lanyard = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
 
 	const lanyardBody = (await lanyard.json()) as LanyardResponse;
 
@@ -288,7 +239,7 @@ export const getStaticProps: GetStaticProps<Props> = async function () {
 	}
 
 	return {
-		props: {pinnedRepos, lanyard: lanyardBody.data},
+		props: { pinnedRepos, lanyard: lanyardBody.data },
 		revalidate: 120,
 	};
 };
