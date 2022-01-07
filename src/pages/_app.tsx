@@ -1,4 +1,4 @@
-import React, { ReactNode, StrictMode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, StrictMode, useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Router } from 'next/router';
