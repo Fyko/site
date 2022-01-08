@@ -11,7 +11,6 @@ import {
 	SiGo,
 	SiLinkedin,
 	SiNodedotjs as SiNodeDotJs,
-	SiOnlyfans,
 	SiPostgresql,
 	SiRedis,
 	SiRust,
