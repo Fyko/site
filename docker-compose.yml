@@ -1,6 +1,39 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'doctordoctor'
+      POSTGRES_DB: 'website'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - '127.0.0.1:5432:5432'
+    restart: unless-stopped
+
+  hasura:
+    image: hasura/graphql-engine:v2.0.0-beta.2.cli-migrations-v3
+    environment:
+      HASURA_GRAPHQL_ADMIN_SECRET: 'admin'
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: 'visitor'
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: 'startup, http-log, webhook-log, websocket-log, query-log'
+      HASURA_GRAPHQL_DATABASE_URL: 'postgresql://admin:doctordoctor@postgres:5432/website'
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_STRINGIFY_NUMERIC_TYPES: 'true'
+      HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS: 'true'
+    expose:
+      - '8080'
+    ports:
+      - '127.0.0.1:8080:8080'
+    # volumes:
+    #   - ./hasura/migrations:/hasura-migrations
+    #   - ./hasura/metadata:/hasura-metadata
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
   redis:
       image: redis:5-alpine
       restart: unless-stopped
@@ -11,3 +44,6 @@ services:
         test: ["CMD-SHELL", "redis-cli ping"]
         interval: 10s
         timeout: 5s
+
+volumes:
+  postgres-data:
