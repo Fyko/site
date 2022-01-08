@@ -148,12 +148,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
 					<footer className="p-4 py-10 mx-auto mt-20 max-w-3xl border-t-2 border-gray-900 dark:border-white border-opacity-10 opacity-50">
 						<h1 className="text-3xl font-bold">Carter Himmel</h1>
-						<p>
-							Software Engineer • {new Date().getFullYear()} •{' '}
-							<a href="https://github.com/fyko/site" target="_blank" rel="noreferrer">
-								source
-							</a>
-						</p>
+						<p>Software Engineer • {new Date().getFullYear()}</p>
+						Based on{' '}
+						<a href="https://alistair.sh" target="_blank" rel="noreferrer">
+							ali's
+						</a>{' '}
+						website{' '}
+						<a href="https://github.com/alii/alistair" target="_blank" rel="noreferrer">
+							[source]
+						</a>
 					</footer>
 				</div>
 			</SWRConfig>
