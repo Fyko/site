@@ -19,7 +19,7 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: 'admin'
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: 'visitor'
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: 'startup, http-log, webhook-log, websocket-log, query-log'
-      HASURA_GRAPHQL_DATABASE_URL: 'postgresql://admin:doctordoctor@postgres:5432/website'
+      PG_DATABASE_URL: 'postgresql://admin:doctordoctor@postgres:5432/website'
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
       HASURA_GRAPHQL_STRINGIFY_NUMERIC_TYPES: 'true'
       HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS: 'true'
