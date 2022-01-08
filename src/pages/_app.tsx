@@ -141,14 +141,19 @@ export default function App({ Component, pageProps }: AppProps) {
 						</div>
 					</div>
 
-					<div className="md:py-24 mx-auto space-y-12 max-w-3xl">
+					<main className="md:py-24 mx-auto space-y-12 max-w-3xl">
 						<Component {...pageProps} />
-					</div>
+					</main>
 
-					<div className="p-4 py-10 mx-auto mt-20 max-w-3xl border-t-2 border-white border-opacity-10 opacity-50">
+					<footer className="p-4 py-10 mx-auto mt-20 max-w-3xl border-t-2 border-gray-900 dark:border-white border-opacity-10 opacity-50">
 						<h1 className="text-3xl font-bold">Carter Himmel</h1>
-						<p>Software Engineer • {new Date().getFullYear()}</p>
-					</div>
+						<p>
+							Software Engineer • {new Date().getFullYear()} •{' '}
+							<a href="https://github.com/fyko/site" target="_blank" rel="noreferrer">
+								source
+							</a>
+						</p>
+					</footer>
 				</div>
 			</SWRConfig>
 		</StrictMode>
@@ -160,7 +165,7 @@ function NavLink(props: { children: ReactNode; href: string; closeMenu?: () => v
 		<li>
 			<Link href={props.href}>
 				<a
-					className="block sm:inline-block py-3 sm:px-5 font-mono text-lg sm:text-sm sm:font-normal hover:text-white no-underline sm:underline sm:bg-white sm:bg-opacity-0 sm:hover:bg-opacity-10 rounded-md sm:rounded-full"
+					className="block sm:inline-block py-3 sm:px-5 font-mono text-lg sm:text-sm sm:font-normal dark:hover:text-white no-underline sm:underline rounded-md sm:rounded-full dark:sm:hover:bg-white/10 sm:bg-white/0 sm:hover:bg-gray-900/5"
 					onClick={props.closeMenu}
 				>
 					{props.children}

@@ -71,10 +71,10 @@ export default function Index(props: Props) {
 								target="_blank"
 								href={`https://search.alistair.sh/?q=!maps+${lanyard.kv.location}`}
 								rel="noreferrer"
-								className="flex items-center px-2 pr-3 text-white text-opacity-50 no-underline bg-gray-700 hover:bg-gray-800 rounded-full transition-colors"
+								className="flex items-center px-2 pr-3 dark:text-white dark:text-opacity-50 no-underline bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-800 rounded-full transition-colors text-neutral-600"
 							>
 								<span>
-									<HiOutlineLocationMarker className="inline text-white text-opacity-100" />
+									<HiOutlineLocationMarker className="inline dark:text-white" />
 									&nbsp;
 								</span>
 
@@ -83,13 +83,15 @@ export default function Index(props: Props) {
 									&nbsp;
 								</span>
 
-								<span className="block -mb-0.5 ml-1 w-[6px] h-[6px] bg-white rounded-full animate-pulse" />
+								<span className="block -mb-0.5 ml-1 bg-gray-600 dark:bg-white rounded-full animate-pulse w-[6px] h-[6px]" />
 							</a>
 						</p>
 					)}
 				</div>
 
-				<h1 className="text-3xl sm:text-4xl md:text-6xl font-bold">Howdy, I'm Carter 🤠</h1>
+				<h1 className="text-3xl sm:text-4xl md:text-6xl font-bold">
+					Howdy, I'm <span className="text-blurple">Carter</span> 🤠
+				</h1>
 
 				<p className="opacity-80">I'm a ~{age.toPrecision(6)} year old software engineer based in Denver, Colorado.</p>
 			</div>
@@ -138,7 +140,7 @@ function ProjectCard({ repo: project }: { repo: PinnedRepo }) {
 	return (
 		<motion.div
 			animate={{ height: isOpen ? 'auto' : '54px' }}
-			className="flex overflow-hidden relative flex-col no-underline bg-white bg-opacity-5 hover:bg-opacity-10 rounded-md md:rounded-lg border border-white border-opacity-10"
+			className="flex overflow-hidden relative flex-col dark:text-gray-100 no-underline bg-gradient-to-tr from-blue-100 rounded-md md:rounded-lg dark:border text-blue-900/80 dark:hover:bg-white/10 dark:from-white/5 to-blue-700/5 dark:to-white/5 border-white/10"
 		>
 			<button
 				type="button"
@@ -198,7 +200,7 @@ function ProjectCard({ repo: project }: { repo: PinnedRepo }) {
 									href={`https://github.com/${project.owner}/${project.repo}`}
 									target="_blank"
 									rel="noreferrer"
-									className="inline-flex items-center py-2 px-6 space-x-2 no-underline bg-white bg-opacity-10 rounded-full transition-transform duration-500 hover:scale-95 select-none"
+									className="inline-flex items-center py-2 px-6 space-x-2 text-white no-underline bg-blue-700 rounded-full transition-transform duration-500 hover:scale-95 select-none dark:bg-white/10"
 								>
 									<span>View Project</span>
 									<svg

@@ -5,6 +5,7 @@ module.exports = {
 		domains: [
 			'source.unsplash.com',
 			'lastfm.freetls.fastly.net',
+			'i.scdn.co',
 			'cdn.discordapp.com',
 		],
 	}

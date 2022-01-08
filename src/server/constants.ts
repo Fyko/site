@@ -1,5 +1,20 @@
-export const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK ?? '';
+function env(key: string) {
+	const value = process.env[key];
+	if (!value) {
+		throw new Error(`Missing environment variable ${key}`);
+	}
+	return value;
+}
 
-if (!DISCORD_WEBHOOK) {
-	throw new Error('No DISCORD_WEBHOOK environment variable was provided. Contact form will not work.');
+export const DISCORD_WEBHOOK = env('DISCORD_WEBHOOK');
+export const LAST_FM_API_KEY = env('LAST_FM_API_KEY');
+export const SPOTIFY_CLIENT_ID = env('SPOTIFY_CLIENT_ID');
+export const SPOTIFY_CLIENT_SECRET = env('SPOTIFY_CLIENT_SECRET');
+export const SPOTIFY_REDIRECT_URI = 'http://localhost:3000/api/spotify/oauth';
+
+export const REDIS_URL = env('REDIS_URL');
+
+export enum SPOTIFY_REDIS_KEYS {
+	AccessToken = 'spotify:access_token',
+	RefreshToken = 'spotify:refresh_token',
 }
