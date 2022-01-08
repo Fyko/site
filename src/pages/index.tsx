@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { GetStaticProps } from 'next';
-import React, { useReducer } from 'react';
-import { FaHashtag, FaKeybase } from 'react-icons/fa';
+import React, { useEffect, useReducer, useState } from 'react';
+import { FaHashtag, FaKeybase, FaSmileWink } from 'react-icons/fa';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import {
 	SiAmazonaws,
@@ -11,6 +11,7 @@ import {
 	SiGo,
 	SiLinkedin,
 	SiNodedotjs as SiNodeDotJs,
+	SiOnlyfans,
 	SiPostgresql,
 	SiRedis,
 	SiRust,
@@ -35,6 +36,13 @@ export default function Index(props: Props) {
 	const { data: lanyard } = useLanyard(DISCORD_ID, {
 		fallbackData: props.lanyard,
 	});
+
+	const [showMeme, setShowMeme] = useState(false);
+	useEffect(() => {
+		window.addEventListener('keypress', (e) => {
+			if (e.key.toLowerCase() === 'h') setShowMeme(!showMeme);
+		});
+	}, [showMeme, setShowMeme]);
 
 	return (
 		<>
@@ -64,6 +72,13 @@ export default function Index(props: Props) {
 						<SiLinkedin className="w-7 h-7" />
 						<span className="sr-only">LinkedIn Profile</span>
 					</a>
+
+					{showMeme && (
+						<a href="/onlyfans" target="_blank" rel="noreferrer" aria-label="Onlyfans Profile">
+							<FaSmileWink className="w-7 h-7" />
+							<span className="sr-only">OnlyFans 👀</span>
+						</a>
+					)}
 
 					{lanyard && (
 						<p>
