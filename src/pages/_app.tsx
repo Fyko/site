@@ -15,6 +15,7 @@ import '../styles/global.css';
 import 'nprogress/nprogress.css';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fetcher } from '../util/fetcher';
+import Script from 'next/script';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -156,6 +157,10 @@ export default function App({ Component, pageProps }: AppProps) {
 					</footer>
 				</div>
 			</SWRConfig>
+			<Script src="https://science.fyko.net/latest.js" />
+			<noscript>
+				<img src="https://science.fyko.net/noscript.gif" alt="" referrerPolicy="no-referrer-when-downgrade" />
+			</noscript>
 		</StrictMode>
 	);
 }
