@@ -1,6 +1,7 @@
 import { GRAPHQL_URL } from '../server/constants';
 import { GetServerSideProps } from 'next';
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const getServerSideProps: GetServerSideProps<{}> = async (ctx) => {
 	const props = { props: {} };
 
