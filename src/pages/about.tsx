@@ -23,6 +23,7 @@ import { rand } from '../util/types';
 import { Details } from '../components/details';
 import TrackObjectFull = SpotifyApi.TrackObjectFull;
 import AlbumObjectFull = SpotifyApi.AlbumObjectFull;
+import { FaHashtag } from 'react-icons/fa';
 
 dayjs.extend(relativeTime);
 
@@ -60,7 +61,12 @@ export default function AboutPage({ topTracks, randomLastFMTrack }: Props) {
 				sneaker consignment.
 			</p>
 
-			<h2 className="text-3xl font-bold">Music</h2>
+			<h2 className="text-3xl font-bold" id="music">
+				<a href="#music">
+					<FaHashtag size={18} className="inline -mt-1" />
+				</a>{' '}
+				Music
+			</h2>
 
 			<p>
 				I listen to a lot of Spotify and have always had a passion for music ever since . Over the last 12 months, I've

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { GetStaticProps } from 'next';
 import React, { useReducer } from 'react';
-import { FaKeybase } from 'react-icons/fa';
+import { FaHashtag, FaKeybase } from 'react-icons/fa';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import {
 	SiAmazonaws,
@@ -97,7 +97,12 @@ export default function Index(props: Props) {
 			</div>
 
 			<div className="space-y-4">
-				<h1 className="text-2xl sm:text-3xl font-bold">What do I do? 💭</h1>
+				<h1 className="text-2xl sm:text-3xl font-bold" id="what">
+					<a href="#what">
+						<FaHashtag size={18} className="inline -mt-1" />
+					</a>{' '}
+					What do I do? 💭
+				</h1>
 				<p className="opacity-80">
 					I'm currently enjoying myself over at PUSHAS - we're building a platform to easier facilitate sneaker
 					consignment. Below are some of my popular open source projects. In total, the following repos have earnt me{' '}
@@ -111,7 +116,12 @@ export default function Index(props: Props) {
 			</div>
 
 			<div className="space-y-4">
-				<h1 className="text-2xl sm:text-3xl font-bold">Technologies 💻</h1>
+				<h1 className="text-2xl sm:text-3xl font-bold" id="tech">
+					<a href="#tech">
+						<FaHashtag size={18} className="inline -mt-1" />
+					</a>{' '}
+					Technologies 💻
+				</h1>
 				<p className="opacity-80">
 					I use a wide range of tools to tackle each hurdle in the most efficient manner possible. I really love working
 					with Docker and containersation and it's proven to be a reliable bit of kit for working in and scaling
