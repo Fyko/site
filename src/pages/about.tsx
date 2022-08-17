@@ -223,7 +223,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 	}
 
 	const tracks = await api.getMyTopTracks({
-		time_range: 'long_term',
+		time_range: 'medium_term',
 	});
 
 	await redis.quit();
