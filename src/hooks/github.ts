@@ -60,7 +60,7 @@ export interface PinnedRepo {
  * @returns An SWRResponse fulfilled with an array of pinned github repos
  */
 export function useGitHubPinnedRepos(username: string) {
-	const resp = useSWR<PinnedRepo[], Error>(`https://gh-pinned-repos.egoist.sh/?username=${username}`);
+	const resp = useSWR<PinnedRepo[], Error>(`https://gh-pinned.nxl.sh/api/user/${username}`);
 
 	return {
 		...resp,

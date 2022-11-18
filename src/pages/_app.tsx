@@ -69,6 +69,9 @@ export default function App({ Component, pageProps }: AppProps) {
 			<NavLink href="/talk" closeMenu={closeMenu}>
 				/talk
 			</NavLink>
+			<NavLink href="https://blog.fyko.net" target="_blank" closeMenu={closeMenu}>
+				blog
+			</NavLink>
 		</>
 	);
 
@@ -79,7 +82,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					fallback: {
 						// SSR Lanyard's data
 						[`lanyard:${DISCORD_ID}`]: pageProps?.lanyard as unknown,
-						'https://gh-pinned-repos.egoist.sh/?username=fyko': pageProps?.pinnedRepos as unknown,
+						'https://gh-pinned.nxl.sh/api/user/fyko': pageProps?.pinnedRepos as unknown,
 					},
 					fetcher,
 				}}
@@ -170,13 +173,14 @@ export default function App({ Component, pageProps }: AppProps) {
 	);
 }
 
-function NavLink(props: { children: ReactNode; href: string; closeMenu?: () => void }) {
+function NavLink(props: { children: ReactNode; href: string; closeMenu?: () => void; target?: string }) {
 	return (
 		<li>
 			<Link href={props.href}>
 				<a
 					className="block sm:inline-block py-3 sm:px-5 font-mono text-lg sm:text-sm sm:font-normal dark:hover:text-white no-underline sm:underline rounded-md sm:rounded-full dark:sm:hover:bg-white/10 sm:bg-white/0 sm:hover:bg-gray-900/5"
 					onClick={props.closeMenu}
+					target={props.target}
 				>
 					{props.children}
 				</a>

@@ -57,7 +57,7 @@ export default function Index(props: Props) {
 						<span className="sr-only">Twitter Profile</span>
 					</a>
 
-					<a href="https://keybase.io/carterh/" target="_blank" rel="noreferrer" aria-label="Keybase Profile">
+					<a href="https://keybase.io/fyko/" target="_blank" rel="noreferrer" aria-label="Keybase Profile">
 						<FaKeybase className="w-7 h-7" />
 						<span className="sr-only">Keybase Profile</span>
 					</a>
@@ -118,8 +118,11 @@ export default function Index(props: Props) {
 					What do I do? 💭
 				</h1>
 				<p className="opacity-80">
-					I'm currently enjoying myself over at PUSHAS - we're building a platform to easier facilitate sneaker
-					consignment. Below are some of my popular open source projects. In total, the following repos have earnt me{' '}
+					I'm currently enjoying myself over at Truffle - we're building a platform to give content creators control
+					over their growth and audiences.
+					<br></br>
+					<br></br>
+					Below are some of my popular open source projects. In total, the following repos have earned me{' '}
 					{projects.reduce((acc, project) => acc + parseInt(project.stars, 10), 0)} stars! Thank you! 💖
 				</p>
 				<div className="grid grid-cols-1 sm:grid-cols-2 auto-cols-max gap-1 sm:gap-3">
@@ -252,7 +255,7 @@ function ProjectCard({ repo: project }: { repo: PinnedRepo }) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async function () {
-	const pinnedRepos = await fetch('https://gh-pinned-repos.egoist.sh/?username=fyko').then(
+	const pinnedRepos = await fetch('https://gh-pinned.nxl.sh/api/user/fyko').then(
 		async (response) => response.json() as Promise<PinnedRepo[]>,
 	);
 
