@@ -55,10 +55,9 @@ export default function AboutPage({ topTracks, randomLastFMTrack }: Props) {
 				</a>{' '}
 				in December of 2019 and offered Discord bots to sneaker "cook groups". Now, I work for{' '}
 				<a href="https://pushas.com" rel="noreferrer" target="_blank">
-					PUSHAS
-				</a>
-				, the leading sneaker marketplace in Australia and New Zeland. We're building a platform to easier facilitate
-				sneaker consignment.
+					Truffle
+				</a>{' '}
+				-- we're building a platform to give content creators control over their growth and audiences.
 			</p>
 
 			<h2 className="text-3xl font-bold" id="music">
