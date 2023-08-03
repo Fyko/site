@@ -16,6 +16,11 @@ module.exports = {
 				destination: 'https://shattereddisk.github.io/rickroll/rickroll.mp4',
 				permanent: false,
 			},
+			{
+				source: '/discord',
+				destination: 'https://discord.com/invite/PNvQWVjCVC',
+				permanent: true,
+			},
 		];
 	},
 };
