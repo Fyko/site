@@ -30,7 +30,7 @@ interface Props {
 }
 
 export default function Index(props: Props) {
-	const { data: projects = props.pinnedRepos } = useGitHubPinnedRepos('carterhimmel');
+	const { data: projects = props.pinnedRepos } = useGitHubPinnedRepos('fyko');
 
 	const { data: lanyard } = useLanyard(DISCORD_ID, {
 		fallbackData: props.lanyard,
