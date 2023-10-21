@@ -13,12 +13,12 @@ module.exports = {
 		return [
 			{
 				source: '/my-landscapes',
-				destination: 'https://prettylandscapes.com/rickroll.mp4',
+				destination: 'https://prettylandscapes.com/montage.mp4',
 				permanent: false,
 			},
 			{
 				source: '/onlyfans',
-				destination: 'https://prettylandscapes.com/rickroll.mp4',
+				destination: 'https://prettylandscapes.com/montage.mp4',
 				permanent: false,
 			},
 			{
