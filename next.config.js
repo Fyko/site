@@ -13,7 +13,7 @@ module.exports = {
 		return [
 			{
 				source: '/onlyfans',
-				destination: 'https://shattereddisk.github.io/rickroll/rickroll.mp4',
+				destination: 'https://prettylandscapes.com/rickroll.mp4',
 				permanent: false,
 			},
 			{
