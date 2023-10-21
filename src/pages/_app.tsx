@@ -165,7 +165,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					</footer>
 				</div>
 			</SWRConfig>
-			<Script src="http://apples.fyko.net/js/script.js" defer data-domain="fyko.net,cshnet.net,fyk.ooo,fyko.gay" />
+			<Script src="https://apples.fyko.net/js/script.outbound-links.js" defer data-domain="fyko.net" />
 			<Script
 				strategy="afterInteractive"
 				dangerouslySetInnerHTML={{
