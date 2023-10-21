@@ -12,6 +12,11 @@ module.exports = {
 	async redirects() {
 		return [
 			{
+				source: '/my-landscapes',
+				destination: 'https://prettylandscapes.com/rickroll.mp4',
+				permanent: false,
+			},
+			{
 				source: '/onlyfans',
 				destination: 'https://prettylandscapes.com/rickroll.mp4',
 				permanent: false,
