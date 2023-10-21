@@ -165,10 +165,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					</footer>
 				</div>
 			</SWRConfig>
-			<Script src="https://science.fyko.net/latest.js" />
-			<noscript>
-				<img src="https://science.fyko.net/noscript.gif" alt="" referrerPolicy="no-referrer-when-downgrade" />
-			</noscript>
+			<Script src="http://apples.fyko.net/js/script.js" defer data-domain="fyko.net,cshnet.net,fyk.ooo,fyko.gay" />
 			<Script
 				strategy="afterInteractive"
 				dangerouslySetInnerHTML={{
