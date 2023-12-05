@@ -1,12 +1,20 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+export default {
 	reactStrictMode: true,
 	images: {
-		domains: [
-			'source.unsplash.com',
-			'lastfm.freetls.fastly.net',
-			'i.scdn.co',
-			'cdn.discordapp.com',
+		remotePatterns: [
+			{
+				hostname: 'source.unsplash.com',
+			},
+			{
+				hostname: 'lastfm.freetls.fastly.net',
+			},
+			{
+				hostname: 'i.scdn.co',
+			},
+			{
+				hostname: 'cdn.discordapp.com',
+			},
 		],
 	},
 	async redirects() {
@@ -20,11 +28,6 @@ module.exports = {
 				source: '/onlyfans',
 				destination: 'https://prettylandscapes.com/montage.mp4',
 				permanent: false,
-			},
-			{
-				source: '/discord',
-				destination: 'https://discord.com/invite/PNvQWVjCVC',
-				permanent: true,
 			},
 		];
 	},

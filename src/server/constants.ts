@@ -3,6 +3,7 @@ function env(key: string) {
 	if (!value) {
 		throw new Error(`Missing environment variable ${key}`);
 	}
+
 	return value;
 }
 

@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router';
-import { APIResponse } from 'nextkit';
+import type { APIResponse } from 'nextkit';
 import React from 'react';
 import { toast } from 'react-hot-toast';
+import { FaKeybase } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { RiSendPlane2Line } from 'react-icons/ri';
 import { SiDiscord, SiTwitter } from 'react-icons/si';
-import { FaKeybase } from 'react-icons/fa';
-import { ListItem } from '../components/list-item';
-import { fetcher } from '../util/fetcher';
 import { useLanyard } from 'use-lanyard';
+import { ListItem } from '../components/list-item';
 import { DISCORD_ID } from '../components/song';
+import { fetcher } from '../util/fetcher';
 
 const statusMap = {
 	online: 'bg-green-500',
@@ -24,11 +24,11 @@ export default function Talk() {
 
 	return (
 		<div className="space-y-4">
-			<h1 className="text-2xl sm:text-3xl font-bold">Let's talk 💬</h1>
+			<h1 className="text-2xl font-bold sm:text-3xl">Let's talk 💬</h1>
 			<p>Leave a message on the form below or get in touch through Discord, Twitter or email.</p>
 
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-				<div className="p-5 bg-gray-100 rounded-lg dark:bg-white/5">
+			<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+				<div className="rounded-lg bg-gray-100 p-5 dark:bg-white/5">
 					<form
 						className="space-y-2"
 						action="/api/form"
@@ -55,7 +55,7 @@ export default function Talk() {
 						}}
 					>
 						<label htmlFor="name" className="block">
-							<span className="text-sm font-bold tracking-wide dark:text-white text-opacity-50 uppercase select-none">
+							<span className="select-none text-sm font-bold uppercase tracking-wide text-opacity-50 dark:text-white">
 								Name
 							</span>
 
@@ -64,12 +64,12 @@ export default function Talk() {
 								type="body"
 								name="name"
 								id="name"
-								className="block py-1 px-4 w-full font-sans text-lg bg-gray-200 rounded-md focus:ring focus:outline-none dark:bg-white/5"
+								className="block w-full rounded-md bg-gray-200 px-4 py-1 font-sans text-lg focus:outline-none focus:ring dark:bg-white/5"
 							/>
 						</label>
 
 						<label htmlFor="email" className="block">
-							<span className="text-sm font-bold tracking-wide dark:text-white text-opacity-50 uppercase select-none">
+							<span className="select-none text-sm font-bold uppercase tracking-wide text-opacity-50 dark:text-white">
 								Email Address
 							</span>
 
@@ -78,12 +78,12 @@ export default function Talk() {
 								type="email"
 								name="email"
 								id="email"
-								className="block py-1 px-4 w-full font-sans text-lg bg-gray-200 rounded-md focus:ring focus:outline-none dark:bg-white/5"
+								className="block w-full rounded-md bg-gray-200 px-4 py-1 font-sans text-lg focus:outline-none focus:ring dark:bg-white/5"
 							/>
 						</label>
 
 						<label htmlFor="body" className="block">
-							<span className="text-sm font-bold tracking-wide dark:text-white text-opacity-50 uppercase select-none">
+							<span className="select-none text-sm font-bold uppercase tracking-wide text-opacity-50 dark:text-white">
 								Your message
 							</span>
 
@@ -91,14 +91,14 @@ export default function Talk() {
 								rows={5}
 								name="body"
 								id="body"
-								className="block py-1 px-4 w-full font-sans text-lg bg-gray-200 rounded-md focus:ring focus:outline-none dark:bg-white/5"
+								className="block w-full rounded-md bg-gray-200 px-4 py-1 font-sans text-lg focus:outline-none focus:ring dark:bg-white/5"
 							/>
 						</label>
 
 						<div className="block pt-2">
 							<button
 								type="submit"
-								className="inline-flex items-center py-2 px-8 space-x-2 text-lg text-blue-100 dark:text-white bg-blue-700 rounded-full focus:ring focus:outline-none dark:bg-white/5 dark:hover:bg-white/10"
+								className="inline-flex items-center space-x-2 rounded-full bg-blue-700 px-8 py-2 text-lg text-blue-100 focus:outline-none focus:ring dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
 							>
 								<span>Send</span> <RiSendPlane2Line />
 							</button>
@@ -107,30 +107,24 @@ export default function Talk() {
 				</div>
 
 				<div>
-					<ul className="space-y-2 list-disc list-inside">
+					<ul className="list-inside list-disc space-y-2">
 						<ListItem icon={HiOutlineMail} text="me@fyko.net" />
 						<ListItem
 							icon={SiDiscord}
 							text={
 								lanyard ? (
 									<span className="flex items-center space-x-1">
-										<span>
-											{lanyard.discord_user.username}#{lanyard.discord_user.discriminator}
-										</span>
+										<span>@{lanyard.discord_user.username}</span>
 
-										<span
-											className={`${
-												statusMap[lanyard.discord_status as keyof typeof statusMap]
-											} h-2 w-2 inline-block rounded-full`}
-										/>
+										<span className={`${statusMap[lanyard.discord_status]} inline-block h-2 w-2 rounded-full`} />
 									</span>
 								) : (
-									<span>Carter#0007</span>
+									<span>@fykowo</span>
 								)
 							}
 						/>
-						<ListItem icon={SiTwitter} text="Fykowo" />
-						<ListItem icon={FaKeybase} text="fyko" />
+						<ListItem icon={SiTwitter} text="@Fykowo" />
+						<ListItem icon={FaKeybase} text="@fyko" />
 					</ul>
 				</div>
 			</div>

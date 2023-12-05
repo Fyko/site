@@ -1,10 +1,8 @@
-/* eslint-disable unicorn/prefer-module */
+import typography from '@tailwindcss/typography';
+import { type Config } from 'tailwindcss';
+import defaults from 'tailwindcss/defaultTheme';
 
-const defaults = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors')
-
-/** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
-module.exports = {
+const config = {
 	content: ['./src/**/*.{tsx,ts,css}'],
 	darkMode: 'media',
 	theme: {
@@ -22,5 +20,5 @@ module.exports = {
 		typography: ['dark'],
 		animation: ['motion-safe'],
 	},
-	plugins: [require('@tailwindcss/typography')],
-};
+	plugins: [typography],
+} satisfies Config;

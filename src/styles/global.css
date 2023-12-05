@@ -31,8 +31,7 @@ body {
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 * {
@@ -73,7 +72,9 @@ img {
 }
 
 .ball-transitions {
-	transition: opacity 0.2s, transform 0.1s;
+	transition:
+		opacity 0.2s,
+		transform 0.1s;
 }
 
 .singlarity-hover > * {

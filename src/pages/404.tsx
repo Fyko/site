@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const getShortLink = `
   query GetShortLink($short: String!) {
@@ -18,6 +18,7 @@ export default function Error() {
 			console.log(router);
 			const res = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL!, {
 				method: 'POST',
+				headers: { 'Content-Type': 'application/json', 'x-hasura-role': 'anonymous' },
 				body: JSON.stringify({
 					query: getShortLink,
 					variables: { short: router.asPath.replace('/', '') },
@@ -34,12 +35,13 @@ export default function Error() {
 				}
 			}
 		}
+
 		void run();
 	}, [router, setErrorContent]);
 
 	return (
 		<div className="space-y-4">
-			<h1 className="text-2xl sm:text-3xl md:text-5xl font-bold">{errorContent}</h1>
+			<h1 className="text-2xl font-bold sm:text-3xl md:text-5xl">{errorContent}</h1>
 		</div>
 	);
 }

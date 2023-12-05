@@ -1,7 +1,7 @@
-import { api } from '../../server/api';
+import { NextkitError } from 'nextkit';
 import { z } from 'zod';
+import { api } from '../../server/api';
 import { DISCORD_WEBHOOK } from '../../server/constants';
-import { NextkitException } from 'nextkit';
 
 const schema = z.object({
 	name: z.string().max(100),
@@ -36,7 +36,7 @@ export default api({
 		});
 
 		if (result.status >= 400) {
-			throw new NextkitException(result.status, 'Error sending notification');
+			throw new NextkitError(result.status, 'Error sending notification');
 		}
 
 		if (req.headers['content-type'] === 'application/json') {

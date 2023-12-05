@@ -35,15 +35,15 @@ services:
       - postgres
 
   redis:
-      image: redis:5-alpine
-      restart: unless-stopped
-      command: redis-server --requirepass f1KPv2ODSXD0wcL1dph3mTjQkdqmSlao
-      ports: 
-        - 6379:6379
-      healthcheck:
-        test: ["CMD-SHELL", "redis-cli ping"]
-        interval: 10s
-        timeout: 5s
+    image: redis:5-alpine
+    restart: unless-stopped
+    command: redis-server --requirepass f1KPv2ODSXD0wcL1dph3mTjQkdqmSlao
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: ['CMD-SHELL', 'redis-cli ping']
+      interval: 10s
+      timeout: 5s
 
 volumes:
   postgres-data:

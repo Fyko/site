@@ -1,5 +1,5 @@
-import React from 'react';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
+import React from 'react';
 
 export default class CarterDocument extends Document {
 	public render() {
@@ -7,6 +7,7 @@ export default class CarterDocument extends Document {
 			<Html lang="en">
 				<Head>
 					<meta charSet="utf-8" />
+					<meta name="darkreader-lock" />
 					<link rel="icon" type="image/png" href="https://avatars1.githubusercontent.com/u/45381083" />
 					<meta name="theme-color" content="#000000" />
 					<meta name="description" content="Carter Himmel, Software Engineer and Coffee Snob" />

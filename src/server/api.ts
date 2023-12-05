@@ -4,9 +4,9 @@ export const api = createAPI({
 	onError: async (_, __, error) => {
 		console.warn(error);
 
-		return Promise.resolve({
+		return {
 			status: 500,
 			message: error.message,
-		});
+		};
 	},
 });

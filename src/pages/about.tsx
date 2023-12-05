@@ -1,6 +1,18 @@
+import ms from '@naval-base/ms';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import IORedis from 'ioredis';
+import type { GetStaticProps } from 'next';
 import Image from 'next/image';
+import { useState } from 'react';
+import { FaHashtag } from 'react-icons/fa';
+import { HiExternalLink } from 'react-icons/hi';
+import { MdExplicit } from 'react-icons/md';
+import { SiSpotify } from 'react-icons/si';
+import SpotifyWebAPI from 'spotify-web-api-node';
 import Banner from '../../public/banner.jpg';
-import { GetStaticProps } from 'next';
+import { Details } from '../components/details';
+import { Modal } from '../components/modal';
 import {
 	LAST_FM_API_KEY,
 	REDIS_URL,
@@ -8,44 +20,33 @@ import {
 	SPOTIFY_CLIENT_SECRET,
 	SPOTIFY_REDIS_KEYS,
 } from '../server/constants';
-import SpotifyWebAPI from 'spotify-web-api-node';
-import { MdExplicit } from 'react-icons/md';
-import { Modal } from '../components/modal';
-import { useState } from 'react';
-import { SiSpotify } from 'react-icons/si';
-import { HiExternalLink } from 'react-icons/hi';
-import dayjs from 'dayjs';
-import ms from '@naval-base/ms';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import IORedis from 'ioredis';
-import { LastFM, LastFMGetTrack } from '../server/lfm';
+import type { LastFMGetTrack } from '../server/lfm';
+import { LastFM } from '../server/lfm';
 import { rand } from '../util/types';
-import { Details } from '../components/details';
 import TrackObjectFull = SpotifyApi.TrackObjectFull;
 import AlbumObjectFull = SpotifyApi.AlbumObjectFull;
-import { FaHashtag } from 'react-icons/fa';
 
 dayjs.extend(relativeTime);
 
 interface Props {
-	topTracks: TrackObjectFull[];
-	randomLastFMTrack: LastFMGetTrack;
+	readonly randomLastFMTrack: LastFMGetTrack;
+	readonly topTracks: TrackObjectFull[];
 }
 
 export default function AboutPage({ topTracks, randomLastFMTrack }: Props) {
 	return (
 		<div className="space-y-8">
-			<h1 className="block text-3xl sm:text-4xl md:text-6xl font-bold">About</h1>
-			<div className="hover:text-gray-900 transition-all text-gray-900/30 dark:text-white/20 dark:hover:text-white/100">
+			<h1 className="block text-3xl font-bold sm:text-4xl md:text-6xl">About</h1>
+			<div className="text-gray-900/30 transition-all hover:text-gray-900 dark:text-white/20 dark:hover:text-white/100">
 				<Image
 					alt="watching the sunset with my besties"
 					src={Banner}
-					width={1100}
+					width={1_100}
 					height={600}
 					placeholder="blur"
-					className="block object-cover rounded-xl border-2 border-white"
+					className="block rounded-xl object-cover"
 				/>
-				<span className="text-sm not-sr-only">watching the sunset with my besties 🤍</span>
+				<span className="not-sr-only text-sm">watching the sunset with my besties 🤍</span>
 			</div>
 			<p className="opacity-80">
 				Howdy folks! My name's Carter! I'm a software engineer currently based in Denver, Colorado. I love spending time
@@ -62,20 +63,20 @@ export default function AboutPage({ topTracks, randomLastFMTrack }: Props) {
 
 			<h2 className="text-3xl font-bold" id="music">
 				<a href="#music">
-					<FaHashtag size={18} className="inline -mt-1" />
+					<FaHashtag size={18} className="-mt-1 inline" />
 				</a>{' '}
 				Music
 			</h2>
 
 			<p>
-				I listen to a lot of Spotify and have always had a passion for music ever since . Over the last 12 months, I've
+				I listen to a lot of Spotify and have always had a passion for music ever since . Over the last 3 months, I've
 				played the song <span className="font-bold">{randomLastFMTrack.name}</span> by{' '}
 				<span className="font-bold">{randomLastFMTrack.artist.name}</span> exactly{' '}
 				<span className="font-bold">{randomLastFMTrack.playcount}</span> times! Below you can find an up-to-date
 				collection of my favourite songs of all time.
 			</p>
 
-			<div className="grid grid-cols-2 md:grid-cols-3 gap-4 gap-y-8">
+			<div className="grid grid-cols-2 gap-4 gap-y-8 md:grid-cols-3">
 				{topTracks.map((track) => (
 					<Track key={track.id} track={track} />
 				))}
@@ -84,7 +85,7 @@ export default function AboutPage({ topTracks, randomLastFMTrack }: Props) {
 	);
 }
 
-function Track({ track }: { track: TrackObjectFull }) {
+function Track({ track }: { readonly track: TrackObjectFull }) {
 	const [statsOpen, setStatsOpen] = useState(false);
 
 	const image = track.album.images[0].url;
@@ -104,7 +105,7 @@ function Track({ track }: { track: TrackObjectFull }) {
 		<button
 			key={track.id}
 			type="button"
-			className="group flex flex-col space-y-2 text-left no-underline align-top focus:ring focus:ring-offset-4 dark:focus:ring-offset-gray-900 outline-none focus:outline-none"
+			className="group flex flex-col space-y-2 text-left align-top no-underline outline-none focus:outline-none focus:ring focus:ring-offset-4 dark:focus:ring-offset-gray-900"
 			aria-roledescription="Opens a stats modal"
 			onClick={open}
 		>
@@ -115,13 +116,13 @@ function Track({ track }: { track: TrackObjectFull }) {
 							src={image}
 							layout="fill"
 							alt={`Album cover art of ${track.album.name} by ${artists}`}
-							className="object-cover rounded-md"
+							className="rounded-md object-cover"
 						/>
 					</div>
 
 					<a
 						href={track.external_urls.spotify}
-						className="group flex justify-between p-3 no-underline bg-gray-100 dark:bg-gray-900 rounded-md border dark:border-0"
+						className="group flex justify-between rounded-md border bg-gray-100 p-3 no-underline dark:border-0 dark:bg-gray-900"
 						target="_blank"
 						rel="noreferrer"
 					>
@@ -160,10 +161,10 @@ function Track({ track }: { track: TrackObjectFull }) {
 				</div>
 			</Modal>
 
-			<div className="overflow-hidden w-full rounded-md image-span-block">
+			<div className="image-span-block w-full overflow-hidden rounded-md">
 				<Image
 					src={image}
-					className="group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 grayscale-[50%]"
+					className="grayscale-[50%] transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
 					alt={`Album cover art for ${track.name} by ${artists}`}
 					width={400}
 					height={400}
@@ -172,7 +173,7 @@ function Track({ track }: { track: TrackObjectFull }) {
 
 			<h2 className="py-0.5 text-lg">
 				<span className="font-bold">
-					{track.explicit && <MdExplicit className="inline -mt-1" />} {track.name}
+					{track.explicit && <MdExplicit className="-mt-1 inline" />} {track.name}
 				</span>{' '}
 				<span className="text-neutral-700 dark:text-neutral-400">• {artists}</span>
 			</h2>
@@ -201,7 +202,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 		await redis.set(
 			SPOTIFY_REDIS_KEYS.AccessToken,
 			result.body.access_token,
-			'ex',
+			'EX',
 
 			// Expires is in seconds as per https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
 			result.body.expires_in,
@@ -228,7 +229,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 	await redis.quit();
 
 	const lfm = new LastFM(LAST_FM_API_KEY);
-	const topLFMTracks = await lfm.getTopTracks('fyk3o', '12month');
+	const topLFMTracks = await lfm.getTopTracks('fyk3o', '3month');
 
 	return {
 		props: {
