@@ -10,7 +10,7 @@ import { HiExternalLink } from 'react-icons/hi';
 import { MdExplicit } from 'react-icons/md';
 import { SiSpotify } from 'react-icons/si';
 import SpotifyWebAPI from 'spotify-web-api-node';
-import Banner from '../../public/banner.jpg';
+import Banner from '../components/banner';
 import { Details } from '../components/details';
 import { Modal } from '../components/modal';
 import {
@@ -37,17 +37,7 @@ export default function AboutPage({ topTracks, randomLastFMTrack }: Props) {
 	return (
 		<div className="space-y-8">
 			<h1 className="block text-3xl font-bold sm:text-4xl md:text-6xl">About</h1>
-			<div className="text-gray-900/30 transition-all hover:text-gray-900 dark:text-white/20 dark:hover:text-white/100">
-				<Image
-					alt="watching the sunset with my besties"
-					src={Banner}
-					width={1_100}
-					height={600}
-					placeholder="blur"
-					className="block rounded-xl object-cover"
-				/>
-				<span className="not-sr-only text-sm">watching the sunset with my besties 🤍</span>
-			</div>
+			<Banner />
 			<p className="opacity-80">
 				Howdy folks! My name's Carter! I'm a software engineer currently based in Denver, Colorado. I love spending time
 				with my friends, writing code, and drinking coffee. I founded my company,{' '}

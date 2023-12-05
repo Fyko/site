@@ -21,8 +21,8 @@ import {
 	SiScylladb,
 } from 'react-icons/si';
 import type { Data as LanyardData, LanyardResponse } from 'use-lanyard';
-import { LanyardError, useLanyard } from 'use-lanyard';
-import Banner from '../../public/banner.jpg';
+import { useLanyard } from 'use-lanyard';
+import Banner from '../components/banner';
 import { ListItem } from '../components/list-item';
 import { DISCORD_ID } from '../components/song';
 import type { PinnedRepo } from '../hooks/github';
@@ -114,17 +114,7 @@ export default function Index(props: Props) {
 
 				<p className="opacity-80">I'm a ~{age.toPrecision(6)} year old software engineer based in Denver, Colorado.</p>
 
-				<div className="text-gray-900/30 transition-all hover:text-gray-900 dark:text-white/20 dark:hover:text-white/100">
-					<Image
-						alt="watching the sunset with my besties"
-						src={Banner}
-						width={1_100}
-						height={600}
-						placeholder="blur"
-						className="block rounded-xl object-cover"
-					/>
-					<span className="not-sr-only text-sm">watching the sunset with my besties 🤍</span>
-				</div>
+				<Banner />
 			</div>
 
 			<div className="space-y-4">
