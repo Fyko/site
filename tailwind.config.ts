@@ -2,7 +2,7 @@ import typography from '@tailwindcss/typography';
 import { type Config } from 'tailwindcss';
 import defaults from 'tailwindcss/defaultTheme';
 
-const config = {
+export default {
 	content: ['./src/**/*.{tsx,ts,css}'],
 	darkMode: 'media',
 	theme: {
